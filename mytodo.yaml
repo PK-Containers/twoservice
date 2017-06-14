@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mytodo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: twoservice
+        track: stable
+    spec:
+      containers:
+        - name: mytodo
+          image: "prabhavy/mytodo:1"
+          env:
+             - name: GET_HOSTS_FROM
+               value: dns
+          ports:
+             - containerPort: 5002
